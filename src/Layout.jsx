@@ -3,17 +3,15 @@ import React from 'react'
 
 import Header from './components/Header'
 import { Outlet } from 'react-router-dom';
-import Footer from './components/Footer'
-import Card from './components/Card';
-import Articles from './components/Articles';
+import Home from './components/Home';
+import Footer from './components/Footer';
 
 function Layout() {
     return (
-        <div className='App w-screen h-screen overflow-x-hidden overflow-y-aut'>
+        <div className='bg-gradient-to-b from-red-400 via-white to-green-400 App w-screen h-screen overflow-x-hidden overflow-y-auto'>
             <Header />
             <Outlet />
-            <Card />
-            <Articles />
+            <Footer/>
         </div>
     )
 }

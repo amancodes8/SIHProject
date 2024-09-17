@@ -3,11 +3,11 @@ import { createRoot } from 'react-dom/client';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import Layout from './Layout.jsx';
 import './index.css';
-import Main from './components/Main.jsx';
-import Products from './components/Products.jsx'
-import About from './components/About.jsx';
-import Login from './components/Login.jsx'
-import MyCalendar from './components/MyCalendar.jsx';
+import Heritage from './components/Heritage.jsx';
+
+import Culture from './components/Culture.jsx';
+import Home from './components/Home.jsx';
+import Festivals from './components/Festivals.jsx';
 
 const router = createBrowserRouter
   (
@@ -18,24 +18,23 @@ const router = createBrowserRouter
         ,
 
         children: [{
-          path: "about",
-          element: <About />
+          path: "home",
+          element: <Home />
         },
         {
-          path: "products",
-          element: <Products />
+          path: "Culture",
+          element: <Culture />
         },
+       
         {
-          path: "main",
-          element: <Main />
+          path: "festivals",
+          element: <Festivals />
         },
+       
+      
         {
-          path: "login",
-          element: <Login />
-        },
-        {
-          path: "calendar",
-          element: <MyCalendar />
+          path: "heritage",
+          element: <Heritage />
         }
         ]
       }

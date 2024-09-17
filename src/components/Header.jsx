@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { RxCross2 } from "react-icons/rx";
 import { HiBars3 } from "react-icons/hi2";
+import { CiSearch } from "react-icons/ci";
 import { gsap } from 'gsap';
 import { NavLink } from 'react-router-dom';
 
@@ -8,10 +9,10 @@ function Header() {
     const [menuBar, setMenuBar] = useState(false);
 
     const navItems = [
-        { label: 'LogIn/Signup', link: '/login' },
-        { label: 'Products', link: '/products' }, // Updated path to a more generic '/products'
-        { label: 'Calendar', link: '/calendar' },
-        { label: 'About', link: '/about' }
+        { label: 'Home', link: '/home' },
+        { label: 'Culture', link: '/culture' },
+        { label: 'Heritage', link: '/heritage' },
+        { label: 'Festivals', link: '/festivals' }
     ];
 
     const toggleMenu = () => {
@@ -42,24 +43,54 @@ function Header() {
     return (
         <div>
             {/* Navbar */}
-            <div className='Navbar flex w-screen h-fit items-center justify-between px-4 py-1 bg-gray-800 text-white'>
-                <NavLink to="/">
-                    <img className='h-12 w-12 rounded-full' src="/images/logo.png" alt="logo" />
+            <div className='Navbar flex w-screen max-h-12 items-center justify-between px-4 py-1 bg-gradient-to-r from-red-700 via-white to-green-700 text-white'>
+                <NavLink to="home" className="flex items-center gap-4">
+                    <img className='h-12 w-12 rounded-full' src="/images/logo.jpeg" alt="logo" />
                 </NavLink>
+                
+                {/* Search box */}
+                <div className="search hidden sm:flex items-center gap-2 flex-1 justify-center">
+                    <input 
+                        type="text" 
+                        placeholder="Search..." 
+                        className="px-3 py-1 w-64 border rounded-full text-black focus:outline-none focus:ring focus:border-blue-500"
+                    /> 
+                    <CiSearch size={24} className="cursor-pointer text-black" />
+                </div>
+
+                {/* Nav Links */}
+                <nav className={`hidden md:flex md:items-center transition-transform duration-300 ease-in-out`}>
+                    <ul className='flex gap-10 text-lg text-black font-semibold font-serif'>
+                        {navItems.map((item, index) => (
+                            <li key={index}>
+                                <NavLink
+                                    to={item.link}
+                                    className={({ isActive }) =>
+                                        `py-1 flex items-center justify-center w-full md:w-auto ${isActive ? 'px-2 bg-blue-900 text-xl rounded-xl text-white' : ''}`
+                                    }
+                                >
+                                    {item.label}
+                                </NavLink>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+
+                {/* Hamburger Menu Icon */}
                 <div className='ml-auto'>
                     {!menuBar ? (
-                        <HiBars3 onClick={toggleMenu} size={30} className="cursor-pointer sm:hidden" />
+                        <HiBars3 onClick={toggleMenu} size={30} className="cursor-pointer md:hidden" />
                     ) : null}
                 </div>
             </div>
 
-            {/* Menu section */}
-            <div className={`z-10 fixed top-0 right-0 h-full w-screen bg-white text-black menu transform ${menuBar ? 'translate-x-0' : 'translate-x-full'} sm:hidden opacity-80`}>
+            {/* Mobile Menu */}
+            <div className={`z-10 fixed top-0 right-0 h-full w-screen bg-white text-black menu transform ${menuBar ? 'translate-x-0' : 'translate-x-full'} md:hidden opacity-90`}>
                 <div className="flex justify-end px-6 py-3">
                     <RxCross2 onClick={toggleMenu} size={30} className="cursor-pointer text-black" />
                 </div>
 
-                {/* NavItems */}
+                {/* NavItems for Mobile */}
                 <nav className="p-4 flex justify-center">
                     <ul className='space-y-3 mt-6 text-md'>
                         {navItems.map((item, index) => (
@@ -68,7 +99,7 @@ function Header() {
                                     onClick={toggleMenu}
                                     to={item.link}
                                     className={({ isActive }) =>
-                                        `p-2 rounded-xl border-2 border-black flex justify-center w-40 ${isActive ? 'bg-gray-600 text-white' : 'bg-gray-500 bg-opacity-50'}`
+                                        `opacity-100 p-2 rounded-xl font-serif border-2 border-black flex justify-center w-40 ${isActive ? 'bg-gray-600 text-white px-2' : 'bg-gray-500 bg-opacity-50'}`
                                     }
                                 >
                                     {item.label}
