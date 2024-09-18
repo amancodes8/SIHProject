@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Hero from './Hero';
+import Footer from './Footer';
 
 function Home() {
   const images = [
@@ -34,6 +35,8 @@ function Home() {
   return (
     <>
       <div
+
+
         className='background-image-container relative border-2 border-b-black mb-4 border-r-0 border-t-0 border-l-0'
         style={{
           backgroundImage: `url(${images[currentIndex]})`,
@@ -53,6 +56,8 @@ function Home() {
         </div>
       </div>
       <Hero />
+
+      <Footer/>
     </>
   );
 }

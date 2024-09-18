@@ -1,10 +1,51 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 
 function Heritage() {
 
+  
+  const navItems =[
+    
+    {
+      label: "Recent Updates",
+    },
+    {
+    label: "State Wise filter",
+  },
+  {
+    label: "Read Articles",
+  },
+  {
+    label: "Share Your Views",
+  },
+ 
+]
+
+
+
 
   return (
-    <div className='flex h-screen w-screen justify-center  font-semibold mt-10'>
+    <div className='flex h-screen w-screen justify-center  font-semibold mt-10 p-2'>
+        <div className='w-[20%] border border-black h-1/3'>
+      <h1 className='text-2xl font-semibold text-center border-b border-black overflow-auto'>Navigate
+        </h1>
+      <ul className='flex flex-col font-semibold justify-center w-full items-center mt-6 gap-2'>
+        {navItems.map((item,index) =>(
+          <li key={index}
+          className='hover:bg-gray-400 px-2 py-1'>
+          <NavLink
+              
+              to={item.link}
+             
+          >
+              {item.label}
+          </NavLink>
+      </li>
+
+        ))}
+      </ul>
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-3xl font-bold text-center mb-10">World Heritage Sites</h1>
         <p className="m-20">

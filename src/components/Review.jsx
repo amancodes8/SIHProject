@@ -6,7 +6,7 @@ function Review() {
          {/* Review Section */}
          <div className=' w-screen flex  items-center justify-center px-4 py-2 mt-10 h-[30vh ] gap-4 flex-col   border-t '>
         <textarea
-          className='w-20vw h-1/4 border border-gray-300 p-2'
+          className='w-[50vw] h-1/4 border border-gray-300 p-2'
           placeholder='Write your reviews here'
         />
         <button

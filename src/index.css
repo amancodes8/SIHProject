@@ -24,3 +24,43 @@
     height: 100vh; Adjust based on your layout */
   }
   
+
+ /* Hero.css */
+.card-animate {
+    opacity: 0;
+    transform: translateY(200px);
+    transition: opacity 1s ease-out, transform 0.5s ease-out;
+  }
+  
+  .card-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+
+/* Add this CSS to your styles */
+.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.transition-all {
+  transition-property: opacity, transform;
+  transition-duration: 1s;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.transform {
+  transform: translateX(0);
+}
+
+.-translate-x-20 {
+  transform: translateX(-5rem);
+}
+
+.translate-x-20 {
+  transform: translateX(5rem);
+}

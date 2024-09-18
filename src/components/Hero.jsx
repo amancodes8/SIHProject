@@ -10,7 +10,38 @@ function Hero() {
   const b1r = useRef(null);
   const b2r = useRef(null);
   const b3r = useRef(null);
-  const cardsContainer = useRef(null);
+
+  const cardRefs = useRef([]);
+  const imageRefs = useRef([]);
+
+  useEffect(() => {
+    // Initialize cardRefs.current and imageRefs.current with the correct length
+    cardRefs.current = cardRefs.current.slice(0, cards.length);
+    imageRefs.current = imageRefs.current.slice(0, images.length);
+
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.2,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, options);
+
+    cardRefs.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
+
+    imageRefs.current.forEach((image) => {
+      if (image) observer.observe(image);
+    });
+  }, []);
 
   useEffect(() => {
     // GSAP animations triggered by scroll for each image
@@ -88,8 +119,9 @@ function Hero() {
   ];
 
   return (
-    <div>
-      <div className='Hero h-screen w-screen flex z-10 px-2 py-12 gap-40'>
+    <>
+      
+      <div className='Hero h-screen w-screen flex  z-10 px-2 py-12 gap-40'>
         {images.map((image, index) => (
           <div key={index} className="flex flex-col gap-4 w-[25%]">
             <span className="w-100 text-center justify-center text-2xl font-semibold">{image.name}</span>
@@ -101,21 +133,18 @@ function Hero() {
             />
           </div>
         ))}
+
       </div>
 
       {/* Animated Cards Container */}
-      <div ref={cardsContainer} className='w-screen h-screen  px-2 mx-auto'>
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
+      <div className='w-screen h-screen px-2 mx-auto'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8'>
           {cards.map((card, index) => (
             <div
               key={index}
-              className='bg-gray-300 border border-black h-[30vh] rounded-xl bg-inherit shadow-md shadow-gray-500 flex flex-col items-center justify-center text-3xl font-semibold p-2 text-center opacity-70'
+              ref={(el) => (cardRefs.current[index] = el)}
+              className='card-animate bg-gray-300 border border-black h-[30vh] rounded-xl bg-inherit shadow-md shadow-gray-500 flex flex-col items-center justify-center text-3xl font-semibold p-2 text-center opacity-70 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-400'
             >
-              {/* <img
-                src={card.image}
-                alt={card.title}
-                className='w-full h-3/4 object-cover mb-2'
-              /> */}
               <h3 className='text-lg font-bold'>{card.title}</h3>
               <p className='text-sm'>{card.description}</p>
             </div>
@@ -123,8 +152,8 @@ function Hero() {
         </div>
       </div>
 
-   <Review/>
-    </div>
+      <Review/>
+    </>
   );
 }
 

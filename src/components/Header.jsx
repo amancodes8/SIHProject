@@ -45,7 +45,7 @@ function Header() {
             {/* Navbar */}
             <div className='Navbar flex w-screen max-h-12 items-center justify-between px-4 py-1 bg-gradient-to-r from-red-700 via-white to-green-700 text-white'>
                 <NavLink to="home" className="flex items-center gap-4">
-                    <img className='h-12 w-12 rounded-full' src="/images/logo.jpeg" alt="logo" />
+                    <img className='h-12 w-12 rounded-full' src="/images/logo1.jpeg" alt="logo" />
                 </NavLink>
                 
                 {/* Search box */}
@@ -79,13 +79,13 @@ function Header() {
                 {/* Hamburger Menu Icon */}
                 <div className='ml-auto'>
                     {!menuBar ? (
-                        <HiBars3 onClick={toggleMenu} size={30} className="cursor-pointer md:hidden" />
+                        <HiBars3 onClick={toggleMenu} size={30} className="cursor-pointer md:hidden text-black font-xl" />
                     ) : null}
                 </div>
             </div>
 
             {/* Mobile Menu */}
-            <div className={`z-10 fixed top-0 right-0 h-full w-screen bg-white text-black menu transform ${menuBar ? 'translate-x-0' : 'translate-x-full'} md:hidden opacity-90`}>
+            <div className={`z-10 fixed top-0 right-0 h-full w-screen bg-gradient-to-b from-red-300 via-white to to-green-300 text-black menu transform ${menuBar ? 'translate-x-0' : 'translate-x-full'} md:hidden opacity-100`}>
                 <div className="flex justify-end px-6 py-3">
                     <RxCross2 onClick={toggleMenu} size={30} className="cursor-pointer text-black" />
                 </div>
@@ -99,7 +99,7 @@ function Header() {
                                     onClick={toggleMenu}
                                     to={item.link}
                                     className={({ isActive }) =>
-                                        `opacity-100 p-2 rounded-xl font-serif border-2 border-black flex justify-center w-40 ${isActive ? 'bg-gray-600 text-white px-2' : 'bg-gray-500 bg-opacity-50'}`
+                                        `opacity-100 p-2 rounded-ss-lg rounded-ee-lg font-serif border-2 border-black flex justify-center w-40 ${isActive ? 'bg-blue-700 text-white px-2' : 'bg-blue-500 bg-opacity-50'}`
                                     }
                                 >
                                     {item.label}

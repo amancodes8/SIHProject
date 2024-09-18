@@ -9,9 +9,9 @@ import Footer from './components/Footer';
 function Layout() {
     return (
         <div className='bg-gradient-to-b from-red-400 via-white to-green-400 App w-screen h-screen overflow-x-hidden overflow-y-auto'>
+        
             <Header />
             <Outlet />
-            <Footer/>
         </div>
     )
 }
